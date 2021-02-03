@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import Board from "./components/Board";
+import Board from './components/Board'
 
 const App = () => {
     const defaultState = {
