@@ -1,0 +1,13 @@
+{
+    "name": "task-board",
+    "version": "0.0.1",
+    "description": "Task board project",
+    "author": "Kirill Frolov",
+    "scripts": {
+        "start": "react-scripts start"
+    },
+    "dependencies": {
+        "react": "17.0.1",
+        "react-dom": "17.0.1"
+    }
+}
