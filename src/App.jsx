@@ -4,12 +4,15 @@ import Board from './components/Board'
 const App = () => {
     const defaultState = {
         todo: [
-            {id: 1, description: 'sdsd'},
-            {id: 2, description: 'asd'},
-            {id: 3, description: 'qwq'},
+            {id: 1, description: 'aaa'},
+            {id: 2, description: 'bbb'},
+            {id: 3, description: 'ccc'},
+            {id: 4, description: 'ddd'},
+            {id: 5, description: 'eee'},
+            {id: 6, description: 'fff'},
+            {id: 7, description: 'ggg'},
         ],
         doing: [
-            {id: 4, description: 'zxcz'},
         ],
         done: [],
     }

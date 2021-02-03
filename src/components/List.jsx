@@ -3,10 +3,18 @@ import {Droppable} from 'react-beautiful-dnd'
 import Task from './Task'
 
 const List = ({droppableId, tasks}) => (
-    <Droppable dropabbleId={droppableId}>
-        {() => (
-            <div>
-                {tasks.map((t, index) => <Task key={t.id} draggableId={t.id} index={index} text={t.description}/>)}
+    <Droppable droppableId={droppableId}>
+        {(provided) => (
+            <div ref={provided.innerRef}>
+                {tasks.map((t, index) => (
+                    <Task
+                        key={t.id}
+                        draggableId={t.id.toString()}
+                        index={index}
+                        text={t.description}
+                    />)
+                )}
+                {provided.placeholder}
             </div>
         )}
     </Droppable>

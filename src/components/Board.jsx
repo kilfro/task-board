@@ -4,14 +4,20 @@ import List from './List'
 
 const Board = ({tasks, setTasks}) => {
     const move = (source, destination, draggableId) => {
-        let destList = [...tasks[destination.droppableId]]
+        let destList
         let sourceList = [...tasks[source.droppableId]]
-        const movedTask = source.find(t => t.id === draggableId)
+        const movedTask = sourceList.find(t => t.id == draggableId)
 
-        sourceList = sourceList.filter(t => t.id !== draggableId)
+        sourceList = sourceList.filter(t => t.id != draggableId)
+        if (source.droppableId === destination.droppableId) {
+            destList = [...sourceList]
+        } else {
+            destList = [...tasks[destination.droppableId]]
+        }
+
         if (destination.index === 0) {
             destList = [movedTask, ...destList]
-        } else if (destination.index === destList.length - 1) {
+        } else if (destination.index === destList.length) {
             destList = [...destList, movedTask]
         } else {
             const sliceOne = destList.slice(0, destination.index)
