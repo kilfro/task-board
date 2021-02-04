@@ -13,8 +13,13 @@ const App = () => {
             {id: 7, description: 'ggg'},
         ],
         doing: [
+            {id: 8, description: 'hhh'},
+            {id: 9, description: 'iii'},
         ],
-        done: [],
+        done: [
+            {id: 10, description: 'jjj'},
+            {id: 11, description: 'kkk'},
+        ],
     }
     const [tasks, setTasks] = useState(defaultState)
 

@@ -2,10 +2,16 @@ import React from 'react'
 import {Droppable} from 'react-beautiful-dnd'
 import Task from './Task'
 
+const getListStyle = (isDraggingOver) => ({
+    margin: 5,
+    padding: 5,
+    backgroundColor: isDraggingOver ? 'antiquewhite' : 'aliceblue',
+})
+
 const List = ({droppableId, tasks}) => (
     <Droppable droppableId={droppableId}>
-        {(provided) => (
-            <div ref={provided.innerRef}>
+        {(provided, snapshot) => (
+            <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
                 {tasks.map((t, index) => (
                     <Task
                         key={t.id}
@@ -14,6 +20,8 @@ const List = ({droppableId, tasks}) => (
                         text={t.description}
                     />)
                 )}
+                {console.log(provided)}
+
                 {provided.placeholder}
             </div>
         )}

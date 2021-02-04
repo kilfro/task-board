@@ -2,6 +2,10 @@ import React from 'react'
 import {DragDropContext} from 'react-beautiful-dnd'
 import List from './List'
 
+const containerStyle = {
+    display: 'flex'
+}
+
 const Board = ({tasks, setTasks}) => {
     const move = (source, destination, draggableId) => {
         let destList
@@ -46,7 +50,15 @@ const Board = ({tasks, setTasks}) => {
 
     return (
         <DragDropContext onDragEnd={dragEndHandler}>
-            {Object.keys(tasks).map(listName => <List key={listName} droppableId={listName} tasks={tasks[listName]}/>)}
+            <div style={containerStyle}>
+                {Object.keys(tasks).map(listName => (
+                    <List
+                        key={listName}
+                        droppableId={listName}
+                        tasks={tasks[listName]}
+                    />)
+                )}
+            </div>
         </DragDropContext>
     )
 }
