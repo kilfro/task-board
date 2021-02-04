@@ -20,8 +20,6 @@ const List = ({droppableId, tasks}) => (
                         text={t.description}
                     />)
                 )}
-                {console.log(provided)}
-
                 {provided.placeholder}
             </div>
         )}

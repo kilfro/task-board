@@ -1,42 +1,14 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import {DragDropContext} from 'react-beautiful-dnd'
 import List from './List'
+import {moveTask} from '../store/actions'
 
 const containerStyle = {
     display: 'flex'
 }
 
-const Board = ({tasks, setTasks}) => {
-    const move = (source, destination, draggableId) => {
-        let destList
-        let sourceList = [...tasks[source.droppableId]]
-        const movedTask = sourceList.find(t => t.id == draggableId)
-
-        sourceList = sourceList.filter(t => t.id != draggableId)
-        if (source.droppableId === destination.droppableId) {
-            destList = [...sourceList]
-        } else {
-            destList = [...tasks[destination.droppableId]]
-        }
-
-        if (destination.index === 0) {
-            destList = [movedTask, ...destList]
-        } else if (destination.index === destList.length) {
-            destList = [...destList, movedTask]
-        } else {
-            const sliceOne = destList.slice(0, destination.index)
-            const sliceTwo = destList.slice(destination.index)
-            destList = [...sliceOne, movedTask, ...sliceTwo]
-        }
-
-        const newState = {
-            ...tasks,
-            [source.droppableId]: sourceList,
-            [destination.droppableId]: destList,
-        }
-
-        setTasks(newState)
-    }
+const Board = ({tasks, move}) => {
 
     const dragEndHandler = ({source, destination, draggableId}) => {
         if (!destination) {
@@ -63,4 +35,12 @@ const Board = ({tasks, setTasks}) => {
     )
 }
 
-export default Board
+const mapStateToProps = state => ({
+    tasks: state
+})
+
+const mapDispatchToProps = {
+    move: moveTask
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Board)
