@@ -1,4 +1,4 @@
-import {MOVE_TASK} from './actionTypes'
+import {ADD_TASK, MOVE_TASK} from './actionTypes'
 
 export const moveTask = (source, destination, draggableId) => ({
     type: MOVE_TASK,
@@ -6,5 +6,12 @@ export const moveTask = (source, destination, draggableId) => ({
         source,
         destination,
         draggableId,
+    }
+})
+
+export const createTask = (description) => ({
+    type: ADD_TASK,
+    payload: {
+        description
     }
 })

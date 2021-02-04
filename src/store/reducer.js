@@ -1,4 +1,4 @@
-import {MOVE_TASK} from './actionTypes'
+import {ADD_TASK, MOVE_TASK} from './actionTypes'
 
 const defaultState = {
     todo: [
@@ -22,6 +22,17 @@ const defaultState = {
 
 export const reducer = (state = defaultState, action = {}) => {
     switch (action.type) {
+        case ADD_TASK:
+            const {todo} = state
+            todo.push({
+                id: Date.now().toString(),
+                description: action.payload.description
+            })
+
+            return {
+                ...state,
+                todo
+            }
         case MOVE_TASK:
             const {source, destination, draggableId} = action.payload
             let destList, sourceList = [...state[source.droppableId]]
