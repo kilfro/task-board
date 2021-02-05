@@ -1,6 +1,6 @@
 import React from 'react'
 import {Droppable} from 'react-beautiful-dnd'
-import Task from './Task'
+import DraggableContainer from './DraggableContainer'
 
 const getListStyle = (isDraggingOver) => ({
     margin: 5,
@@ -13,7 +13,7 @@ const List = ({droppableId, tasks}) => (
         {(provided, snapshot) => (
             <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
                 {tasks.map((t, index) => (
-                    <Task
+                    <DraggableContainer
                         key={t.id}
                         draggableId={t.id.toString()}
                         index={index}
