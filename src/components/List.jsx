@@ -4,7 +4,7 @@ import DraggableContainer from './DraggableContainer'
 
 const getListStyle = (isDraggingOver) => ({
     margin: 5,
-    padding: 5,
+    padding: '10px 10px 0 10px',
     backgroundColor: isDraggingOver ? 'antiquewhite' : 'aliceblue',
 })
 
