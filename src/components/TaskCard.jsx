@@ -1,4 +1,7 @@
 import React from 'react'
+import {X} from 'react-bootstrap-icons'
+import {removeTask} from '../store/actions'
+import {connect} from 'react-redux'
 
 const getCardStyle = (isDragging, draggableStyle) => ({
     userSelect: 'none',
@@ -12,16 +15,36 @@ const getCardStyle = (isDragging, draggableStyle) => ({
     width: 200,
     backgroundColor: isDragging ? 'rgba(250, 250, 250, 0.8)' : '#e9e9e9',
     ...draggableStyle,
+    display: 'flex',
 })
 
-const TaskCard = ({innerRef, isDragging, style: draggableStyle, children, ...rest}) => (
-    <div
-        ref={innerRef}
-        {...rest}
-        style={getCardStyle(isDragging, draggableStyle)}
-    >
-        {children}
-    </div>
-)
+const removeButtonStyle = {
+    cursor: 'pointer',
+}
 
-export default TaskCard
+const TaskCard = (props) => {
+    const {innerRef, isDragging, style: draggableStyle, children, removeTask, droppableId, draggableId, ...rest} = props
+    const removeHandler = () => {
+        removeTask(droppableId, draggableId)
+    }
+
+    return (
+        <div
+            ref={innerRef}
+            {...rest}
+            style={getCardStyle(isDragging, draggableStyle)}
+        >
+            <div style={{width: 'inherit'}}>{children}</div>
+            <X
+                style={removeButtonStyle}
+                onClick={removeHandler}
+            />
+        </div>
+    )
+}
+
+const mapDispatchToProps = {
+    removeTask
+}
+
+export default connect(null, mapDispatchToProps)(TaskCard)

@@ -16,8 +16,9 @@ const List = ({droppableId, tasks}) => (
                     <DraggableContainer
                         key={t.id}
                         draggableId={t.id.toString()}
+                        droppableId={droppableId}
                         index={index}
-                        text={t.description}
+                        task={t}
                     />)
                 )}
                 {provided.placeholder}
